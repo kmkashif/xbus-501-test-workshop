@@ -43,69 +43,107 @@ class GarageTests(unittest.TestCase):
         g = Garage(name)
         self.assertEqual(name, g.name)
 
-    @skip('pending test code')
+#    @skip('pending REST test code')
     def test_allows_cars_to_enter(self):
         """
         Ensure the garage allows Car object to enter
         """
-        pass
+        name = 'Bob\'s Garage'
+        g = Garage(name)
+        c = Car('black', 'Acura', 'MDX')
+        g.enter(c)
 
-    @skip('pending test code')
+#    @skip('pending test code')
     def test_ensure_cars_enter_fully(self):
         """
         Ensure vehicle is in garage after it enters (eg: vehicle in garage == True)
         """
-        pass
+        name = 'Bob\'s Garage'
+        g = Garage(name)
+        c = Car('black', 'Acura', 'MDX')
+        g.enter(c)
+        self.assertIn(c, g)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_only_allows_cars_to_enter(self):
         """
         Ensure the garage raises TypeError if non vehicle attempts to enter
         """
-        pass
+        name = 'Bob\'s Garage'
+        g = Garage(name)
+        c = 12
+        with self.assertRaises(TypeError) as cm:
+            g.enter(c)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_only_allows_cars_to_exit(self):
         """
         Ensure the garage raises TypeError if non vehicle attempts to exit
         """
-        pass
+        name = 'Bob\'s Garage'
+        g = Garage(name)
+        c = 12
+        with self.assertRaises(TypeError) as cm:
+            g.exit(c)
 
-    @skip('pending test code')
     def test_allows_cars_to_exit(self):
         """
         Ensure vehicles can leave the garage
         """
-        pass
+        name = 'Bob\'s Garage'
+        g = Garage(name)
+        c = Car('black', 'Acura', 'MDX')
+        g.enter(c)
+        g.exit(c)
 
-    @skip('pending test code')
     def test_ensure_cars_exit_fully(self):
         """
         Ensure vehicle is not in garage after it exits
         """
-        pass
+        name = 'Bob\'s Garage'
+        g = Garage(name)
+        c = Car('black', 'Acura', 'MDX')
+        g.enter(c)
+        g.exit(c)
+        self.assertFalse(c in g)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_raise_lookup_error_on_exit(self):
         """
         Ensure that garage raises LookupError if vehicle attempts
         to exit but was never in garage.
         """
-        pass
+        name = 'Bob\'s Garage'
+        g = Garage(name)
+        c = Car('black', 'Acura', 'MDX')
+        with self.assertRaises(LookupError) as cm:
+            g.exit(c)
 
-    @skip('pending test code')
+#    @skip('pending test code')
     def test_iter_builtin(self):
         """
         Ensure we can iterate over garage vehicles by trying to
         iterate over the garage itself
         """
-        pass
+        name = 'Bob\'s Garage'
+        g = Garage(name)
+        c = Car('black', 'Acura', 'MDX')
+        c0 = Car('black', 'Acura', 'TSX')
+        g.enter(c)
+        g.enter(c0)
+        for x in g:
+            self.assertIn(x, g)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_len_builtin(self):
         """
         Ensure that the length of the garage matches the number
         of vehicles parked in it
         """
-        pass
-
+        name = 'Tia\'s Garage'
+        g = Garage(name)
+        c = Car('black', 'Acura', 'MDX')
+        c0 = Car('black', 'Acura', 'TSX')
+        g.enter(c)
+        g.enter(c0)
+        self.assertEquals(6, len(g))

@@ -34,82 +34,112 @@ from motorsports.buildings import Car, BaseVehicle
 
 class VehicleTests(unittest.TestCase):
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_description(self):
         """
         Ensure the car description return a string of: "color, make model"
         """
-        pass
+        clr = 'black'
+        m1 = 'Acura'
+        m2 = 'MDX'
+        c = Car(clr, m1, m2)
+        self.assertEquals(c.description, '{} {} {}'.format(clr, m1, m2))
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_initial_state_is_stopped(self):
         """
         Ensure the a car's initial state is "stopped"
         """
-        pass
+        clr = 'black'
+        m1 = 'Acura'
+        m2 = 'MDX'
+        c = Car(clr, m1, m2)
+        self.assertEquals('stopped', c.state)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_state_after_start(self):
         """
         Ensure the car's state is "started" after using start method
         """
-        pass
+        clr = 'black'
+        m1 = 'Acura'
+        m2 = 'MDX'
+        c = Car(clr, m1, m2)
+        c.start()
+        self.assertEquals('started', c.state)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_state_after_stop(self):
         """
         Ensure the car's state is "stopped" after using shutdown method
         """
-        pass
+        clr = 'black'
+        m1 = 'Acura'
+        m2 = 'MDX'
+        c = Car(clr, m1, m2)
+        c.start()
+        c.shutdown()
+        self.assertEquals('stopped', c.state)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_str_builtin(self):
         """
         Ensure the car evaluates to a string of
         "I am a <car color>, <car make>, <car model>."
         """
-        pass
+        clr = 'black'
+        m1 = 'Acura'
+        m2 = 'MDX'
+        c = Car(clr, m1, m2)
+        self.assertEquals(str(c), 'I am a {} {} {}.'.format(clr, m1, m2))
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_color_requirement(self):
         """
         Ensure the car requires a color argument during instantiation
         """
-        pass
+        m1 = 'Acura'
+        m2 = 'MDX'
+        with self.assertRaises(TypeError) as cm:
+            c = Car(make=m1, model=m2)
 
-    @skip('pending test code')
-    def test_color_requirement(self):
-        """
-        Ensure the car requires a color argument during instantiation
-        """
-        pass
-
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_make_requirement(self):
         """
         Ensure the car requires a make argument during instantiation
         """
-        pass
+        clr = 'black'
+        m2 = 'MDX'
+        with self.assertRaises(TypeError) as cm:
+            c = Car(color=clr, model=m2)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_model_requirement(self):
         """
         Ensure the car requires a model argument during instantiation
         """
-        pass
+        clr = 'black'
+        m1 = 'Acura'
+        with self.assertRaises(TypeError) as cm:
+            c = Car(make=m1, color=clr)
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_state_read_only(self):
         """
         Ensure the car state attribute is read only and throws
         AttributeError if someone tries to assign a value directly
         """
-        pass
+        clr = 'black'
+        m1 = 'Acura'
+        m2 = 'MDX'
+        c = Car(clr, m1, m2)
+        with self.assertRaises(AttributeError) as cm:
+            c.state = 'string'
 
-    @skip('pending test code')
+    #@skip('pending test code')
     def test_car_is_a_vehicle(self):
         """
         Ensure a car object is also an instance of BaseVehicle
         """
-        pass
-
+        c = Car('black', 'Acura', 'TSX')
+        self.assertIsInstance(c, BaseVehicle)
